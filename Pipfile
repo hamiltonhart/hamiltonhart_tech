@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"psycopg2" = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
+Django = "==2.1"
+
+[dev-packages]
+pylint = "*"
+
+[requires]
+python_version = "3.7"
