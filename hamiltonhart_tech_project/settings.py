@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hl0_7kqnqe!kg=vl=w15ig8+z5p*yj7%7fnj2ihfe0v4ptsyhy'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'hamiltonhart.herokuapp.co
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'hamiltonhart_tech_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,18 +78,25 @@ WSGI_APPLICATION = 'hamiltonhart_tech_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-db_from_env = dj_database_url.config()
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': os.environ.get('DB_NAME', ''),
-		'USER': os.environ.get('DB_USER', ''),
-		'PASSWORD': os.environ.get('DB_PASS', ''),
-		'HOST': 'localhost',
-		'PORT': '5432',
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-DATABASES['default'].update(db_from_env)
+
+# db_from_env = dj_database_url.config()
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+# 		'NAME': os.environ.get('DB_NAME', ''),
+# 		'USER': os.environ.get('DB_USER', ''),
+# 		'PASSWORD': os.environ.get('DB_PASS', ''),
+# 		'HOST': 'localhost',
+# 		'PORT': '5432',
+# 	}
+# }
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation

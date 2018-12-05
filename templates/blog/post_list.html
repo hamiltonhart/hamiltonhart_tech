@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  All Posts
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>All Posts</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  {% if post_list %}
+    
+    {% for post in post_list %}
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.body_text|truncatechars:20}}</p>
+    {% endfor %}
+    {% else %}
+    <h2>No Posts</h2>
+        
+  {% endif %}
+{% endblock bodyblock %}

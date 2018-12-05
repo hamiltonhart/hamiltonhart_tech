@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  {{ post_detail.title }}
+{% endblock titleblock %}
+
+{% block headerblock %}
+    <h1>{{ post_detail.title }}</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  
+    <p>{{ post_detail.author }} &middot; {{ post_detail.date }}</p>
+    <p>{{ post_detail.body_text|safe }}</p>
+  
+{% endblock bodyblock %}
