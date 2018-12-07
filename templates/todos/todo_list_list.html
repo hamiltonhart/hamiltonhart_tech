@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  Todo Lists
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>ToDo Lists</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  
+  
+  {% for list in todo_list %}
+      <h3>{{ list.name  }}</h3>
+      <ul>
+          
+          
+          {% for item in list.todo_items.all %}
+              <li>{{ item }}</li>
+          {% endfor %}
+              
+              
+      </ul>
+  {% endfor %}
+      
+      
+{% endblock bodyblock %}
