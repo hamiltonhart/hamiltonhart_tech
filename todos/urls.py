@@ -20,5 +20,8 @@ urlpatterns = [
     path('item/<int:pk>/update/', 
         views.TodoItemUpdateView.as_view(), 
         name='todo_item_update'),
+    path('list/<int:pk>/delete',
+        views.TodoListDeleteView.as_view(),
+        name='todo_list_delete')
     
 ]

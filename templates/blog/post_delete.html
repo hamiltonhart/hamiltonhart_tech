@@ -9,8 +9,10 @@
 {% endblock headerblock %}
 
 {% block bodyblock %}
-  <h2>Are you sure you want to delete {{post.title}}?</h2>
-
-  <a href="{% url 'home' %}">Cancel</a>
-  <input type="submit" value="Confirm">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <h2>Are you sure you want to delete {{post.title}}?</h2>
+    <a href="{% url 'home' %}">Cancel</a>
+    <input type="submit" value="Confirm" />
+  </form>
 {% endblock bodyblock %}
