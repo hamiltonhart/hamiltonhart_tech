@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  Delete Post {{ post.title }}
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>Delete {{post.title}}</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  <h2>Are you sure you want to delete {{post.title}}?</h2>
+
+  <a href="{% url 'home' %}">Cancel</a>
+  <input type="submit" value="Confirm">
+{% endblock bodyblock %}

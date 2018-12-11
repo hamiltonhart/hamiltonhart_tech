@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  New ToDo List
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>New ToDo List</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+
+      <a href="{% url 'home' %}">Cancel</a>
+      <input type="submit" value="Add List">
+  </form>
+{% endblock bodyblock %}

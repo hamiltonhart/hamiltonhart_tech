@@ -10,7 +10,15 @@
 
 {% block bodyblock %}
   
-    <p>{{ post_detail.author }} &middot; {{ post_detail.date }}</p>
-    <p>{{ post_detail.body_text|linebreaks }}</p>
+    <div>
+        <p>{{ post_detail.author }} &middot; {{ post_detail.date }}</p>
+        <p>{{ post_detail.body_text|linebreaks }}</p>
+        <br>
+    </div>
+    
+    <div>
+        <a href="{% url 'post_update' post_detail.pk %}">Update</a>
+        <a href="{% url 'post_delete' post_detail.pk %}">Delete</a>
+    </div>
   
 {% endblock bodyblock %}

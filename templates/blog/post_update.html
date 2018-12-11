@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  Update {{post.title}}
+{% endblock titleblock %}
+
+
+{% block headerblock %}
+<h1>Update {{post.title}}</h1>
+{% endblock headerblock %}
+
+
+{% block bodyblock %}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+
+    <a href="{% url 'home' %}">Cancel</a>
+    <input type="submit" value="Update">
+
+</form>
+  
+{% endblock bodyblock %}

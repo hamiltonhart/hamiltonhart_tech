@@ -9,13 +9,24 @@
 {% endblock headerblock %}
 
 {% block bodyblock %}
+<div>
+
     {% if todo_list.todo_items.all %}
         <ul>
         {% for item in todo_list.todo_items.all %}
             <li>{{ item.item_name }}</li>
         {% endfor %}
-        </ul>    
-      
+        </ul>     
     {% endif %}
+</div>
+
+<div>
+    <a href="{% url 'todo_item_new' %}">Add ToDo Item</a>
+</div>
+
+<div>
+    <a href="{% url 'todo_list_update' todo_list.pk %}">Update List</a>
+    <a href="{% url 'post_delete' todo_list.pk %}">Delete List</a>
+</div>
 {% endblock bodyblock %}
 

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  Login
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>Login</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+        <button type="submit">Login</button>
+
+  </form>
+{% endblock bodyblock %}
+
