@@ -11,6 +11,6 @@
 {% block bodyblock %}
   
     <p>{{ post_detail.author }} &middot; {{ post_detail.date }}</p>
-    <p>{{ post_detail.body_text|safe }}</p>
+    <p>{{ post_detail.body_text|linebreaks }}</p>
   
 {% endblock bodyblock %}

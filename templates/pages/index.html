@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+  Home
+{% endblock titleblock %}
+
+{% block headerblock %}
+  <h1>Hamilton Hart</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+{% if posts %}
+    {% for post in posts|slice:":3" %}
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.body_text|truncatechars:100}}</p>
+    {% endfor %}
+{% else %}
+    <h2>No Posts</h2>
+        
+{% endif %}
+
+{% if todos %}
+      
+    {% for todo in todos %}
+        <h4><a href="{% url 'todo_list_detail' todo.pk %}">{{ todo.name }}</a></h4>
+          
+        {% if todo.todo_items.all %}           
+            <ul>
+            {% for item in todo.todo_items.all %}
+                <li><input type="checkbox" value="">{{ item.item_name }}</li>
+                
+            {% endfor %}
+            </ul>
+        {% endif %}    
+    {% endfor %}
+{% else %}
+<h2>No ToDos</h2>
+          
+{% endif %}
+
+{% endblock bodyblock %}

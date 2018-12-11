@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+    {{ todo_list.name }}
+{% endblock titleblock %}
+
+{% block headerblock %}
+    <h1>{{ todo_list.name }}</h1>
+{% endblock headerblock %}
+
+{% block bodyblock %}
+    {% if todo_list.todo_items.all %}
+        <ul>
+        {% for item in todo_list.todo_items.all %}
+            <li>{{ item.item_name }}</li>
+        {% endfor %}
+        </ul>    
+      
+    {% endif %}
+{% endblock bodyblock %}
+

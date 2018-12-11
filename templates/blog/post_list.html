@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block titleblock %}
-  All Posts
+  Blog
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>All Posts</h1>
+  <h1>Blog</h1>
 {% endblock headerblock %}
 
 {% block bodyblock %}
@@ -13,7 +13,7 @@
     
     {% for post in post_list %}
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.body_text|truncatechars:45|safe}}</p>
+        <p>{{ post.body_text|truncatechars:100}}</p>
     {% endfor %}
     {% else %}
     <h2>No Posts</h2>
