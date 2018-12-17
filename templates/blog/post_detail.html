@@ -1,24 +1,22 @@
 {% extends "base.html" %}
 
 {% block titleblock %}
-  {{ post_detail.title }}
+  {{ post_detail.title}}
 {% endblock titleblock %}
 
-{% block headerblock %}
-    <h1>{{ post_detail.title }}</h1>
-{% endblock headerblock %}
-
 {% block bodyblock %}
-  
+<h1>{{ post_detail.title }}</h1>
     <div>
         <p>{{ post_detail.author }} &middot; {{ post_detail.date }}</p>
-        <p>{{ post_detail.body_text|linebreaks }}</p>
+        <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <p>{{ post_detail.body_text|linebreaks }}</p>
+        </div>
         <br>
     </div>
     
     <div>
-        <a href="{% url 'post_update' post_detail.pk %}"> + Update</a>
-        <a href="{% url 'post_delete' post_detail.pk %}"> + Delete</a>
+        <a class="btn btn-dark" href="{% url 'post_update' post_detail.pk %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'post_delete' post_detail.pk %}">Delete</a>
     </div>
   
 {% endblock bodyblock %}

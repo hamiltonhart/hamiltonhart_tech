@@ -6,18 +6,19 @@
 
 
 {% block headerblock %}
-<h1>Update {{post.title}}</h1>
+
 {% endblock headerblock %}
 
 
 {% block bodyblock %}
+<h1>Update {{post.title}}</h1>
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <br>
 
-    <a href="{% url 'home' %}">Cancel</a>
-    <input type="submit" value="Update">
+    <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+    <input class="btn btn-dark" type="submit" value="Update">
 
 </form>
   

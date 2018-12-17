@@ -5,18 +5,27 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>Blog</h1>
+  
 {% endblock headerblock %}
 
 {% block bodyblock %}
-  {% if post_list %}
+<h1>Blog</h1>
+  {% if user.is_authenticated %}
+      <a class="btn btn-dark" href="{% url 'post_new' %}">New Post</a>
     
-    {% for post in post_list %}
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.body_text|truncatechars:100}}</p>
-    {% endfor %}
-    {% else %}
-    <h2>No Posts</h2>
-        
   {% endif %}
+  {% if post_list %}
+    <div class="body-padding blog-heading">
+      {% for post in post_list %}
+      
+          <h4><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h4>
+          <p class="author-date-text">{{ post.date }}</p>
+          <p>{{ post.body_text|truncatechars:200}}</p>
+      {% endfor %}
+      {% else %}
+      <h2>No Posts</h2>
+          
+    {% endif %}
+  </div>  
+
 {% endblock bodyblock %}

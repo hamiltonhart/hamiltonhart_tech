@@ -5,15 +5,16 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>Delete {{todo_list.name}}</h1>
+  
 {% endblock headerblock %}
 
 {% block bodyblock %}
+<h1>Delete {{todo_list.name}}</h1>
   <form action="" method="POST">
     {% csrf_token %}
     <h2>Are you sure you want to delete {{todo_list.name}}?</h2>
 
-    <a href="{% url 'home' %}">Cancel</a>
-    <input type="submit" value="Confirm">
+    <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+    <input class="btn btn-danger" type="submit" value="Delete">
   </form>
 {% endblock bodyblock %}

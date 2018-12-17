@@ -1,0 +1,29 @@
+.header {
+    font-family: 'Nanum Gothic', sans-serif;
+    padding: 10px 0px 10px 50px;
+}
+
+.body-padding {
+    padding-top: 15px;
+}
+
+/* index.html */
+
+.home-page-post-list {
+    padding: 15px 0px 10px 0px;
+    border-bottom: black solid 2px;
+}
+
+.home-page-todo-lists {
+    padding: 15px 0px 10px 0px;
+}
+
+.author-date-text {
+    font-style: italic;
+    font-size: .75em;
+    padding: 0 0 0 20px;
+}
+
+.blog-heading {
+ 
+}

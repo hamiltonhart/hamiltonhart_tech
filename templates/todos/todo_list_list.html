@@ -5,24 +5,28 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>ToDo Lists</h1>
+  
 {% endblock headerblock %}
 
 {% block bodyblock %}
+<h1>ToDo Lists</h1>
   
-  
-  {% for list in todo_list %}
-      <h3><a href="{% url 'todo_list_detail' list.pk %}">{{ list.name }}</a></h3>
-      <ul>
-          
-          
-          {% for item in list.todo_items.all %}
-              <li>{{ item }}</li>
-          {% endfor %}
-              
-              
-      </ul>
-  {% endfor %}
+  {% if todo_list %}
+    
+    {% for list in todo_list %}
+        <h3><a href="{% url 'todo_list_detail' list.pk %}">{{ list.name }}</a></h3>
+        <ul>
+                
+            {% for item in list.todo_items.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+                
+                
+        </ul>
+    {% endfor %}
+  {% else %}
+    <h2>No ToDo Lists</h2>
+  {% endif %}
       
       
 {% endblock bodyblock %}

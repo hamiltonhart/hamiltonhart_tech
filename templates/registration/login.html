@@ -5,14 +5,15 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>Login</h1>
+  
 {% endblock headerblock %}
 
 {% block bodyblock %}
+<h1>Login</h1>
   <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button class="btn btn-primary" type="submit">Login</button>
 
   </form>
 {% endblock bodyblock %}

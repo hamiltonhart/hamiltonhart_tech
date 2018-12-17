@@ -5,10 +5,12 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-    <h1>{{ todo_list.name }}</h1>
+    
 {% endblock headerblock %}
 
 {% block bodyblock %}
+<h1>{{ todo_list.name }}</h1>
+
 <div>
 
     {% if todo_list.todo_items.all %}
@@ -21,12 +23,9 @@
 </div>
 
 <div>
-    <a href="{% url 'todo_item_new' %}">Add ToDo Item</a>
-</div>
-
-<div>
-    <a href="{% url 'todo_list_update' todo_list.pk %}">Update List</a>
-    <a href="{% url 'todo_list_delete' todo_list.pk %}">Delete List</a>
+    <a class="btn btn-dark" href="{% url 'todo_item_new' %}">Add ToDo Item</a>
+    <a class="btn btn-dark" href="{% url 'todo_list_update' todo_list.pk %}">Update List</a>
+    <a class="btn btn-danger" href="{% url 'todo_list_delete' todo_list.pk %}">Delete List</a>
 </div>
 {% endblock bodyblock %}
 

@@ -5,37 +5,51 @@
 {% endblock titleblock %}
 
 {% block headerblock %}
-  <h1>Hamilton Hart</h1>
+
 {% endblock headerblock %}
 
 {% block bodyblock %}
-{% if posts %}
-    {% for post in posts|slice:":3" %}
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.body_text|truncatechars:100}}</p>
-    {% endfor %}
-{% else %}
-    <h2>No Posts</h2>
-        
-{% endif %}
 
-{% if todos %}
-      
-    {% for todo in todos %}
-        <h4><a href="{% url 'todo_list_detail' todo.pk %}">{{ todo.name }}</a></h4>
-          
-        {% if todo.todo_items.all %}           
-            <ul>
-            {% for item in todo.todo_items.all %}
-                <li><input type="checkbox" value="">{{ item.item_name }}</li>
+<div class='home-page-post-list'>
+    <h1>Blog</h1>
+    {% if posts %}
+        {% for post in posts|slice:":3" %}
+            <div class="blog-heading">
+                <h4><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h4>
+                <p class="author-date-text">{{ post.date }}</p>
+            </div>
+            <p>{{ post.body_text|truncatechars:100}}</p>
+        {% endfor %}
+        <a href="{% url 'post_list' %}">More posts...</a>
+    {% else %}
+        <h2>No Posts</h2>
+            
+    {% endif %}
+</div>
+
+<div class="home-page-todo-lists">
+    {% if user.is_authenticated %}
+       
+        <h1>ToDos</h1>
+        {% if todos %}
+            
+            {% for todo in todos %}
+                <h4><a href="{% url 'todo_list_detail' todo.pk %}">{{ todo.name }}</a></h4>
                 
+                {% if todo.todo_items.all %}           
+                    <ul>
+                    {% for item in todo.todo_items.all %}
+                        <li>{{ item.item_name }}</li>
+                        
+                    {% endfor %}
+                    </ul>
+                {% endif %}    
             {% endfor %}
-            </ul>
-        {% endif %}    
-    {% endfor %}
-{% else %}
-<h2>No ToDos</h2>
-          
-{% endif %}
+        {% else %}
+        <h2>No ToDos</h2>
+                
+        {% endif %}
+    {% endif %}
+</div>
 
 {% endblock bodyblock %}

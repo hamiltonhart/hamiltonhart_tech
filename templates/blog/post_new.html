@@ -11,13 +11,15 @@
 
 
 {% block bodyblock %}
+<h1>New Post</h1>
+
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <br>
 
-    <a href="{% url 'home' %}">Cancel</a>
-    <input type="submit" value="Post">
+    <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+    <input class="btn btn-dark" type="submit" value="Post">
 
 </form>
   
