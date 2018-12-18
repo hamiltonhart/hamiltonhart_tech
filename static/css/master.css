@@ -27,3 +27,11 @@
 .blog-heading {
  
 }
+
+.button-padding {
+    padding: 15px 0 15px 0;
+}
+
+.todo-list {
+    list-style-type: none;
+}

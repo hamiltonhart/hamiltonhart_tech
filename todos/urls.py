@@ -22,6 +22,15 @@ urlpatterns = [
         name='todo_item_update'),
     path('list/<int:pk>/delete',
         views.TodoListDeleteView.as_view(),
-        name='todo_list_delete')
+        name='todo_list_delete'),
+    path('items/<int:pk>/', 
+        views.TodoItemDetail.as_view(), 
+        name='todo_item_detail'),
+    path('items/<int:pk>/complete/home',
+        views.todo_item_complete_home, 
+        name='todo_item_complete_home'),
+    path('items/<int:pk>/complete/list',
+        views.todo_item_complete_list, 
+        name='todo_item_complete_list'),
     
 ]

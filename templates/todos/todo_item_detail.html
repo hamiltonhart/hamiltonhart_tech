@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block bodyblock %}
+<h1>{{ todo_item.todo_list }}</h1>
+
+<div class="container">
+    <h4>{{ todo_item.item_name }}</h4>
+        {% if todo_item.item_detail %}
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+                <p>{{ todo_item.item_detail|linebreaksbr }}</p>          
+            </div>    
+        {% endif %}
+            
+</div>
+
+<div class="button-padding">
+    <a class="btn btn-secondary" href="{% url 'todo_list_detail' todo_item.todo_list.pk %}">Back to List</a>
+    <a class="btn btn-success" href="{% url 'todo_item_complete_list' todo_item.pk %}">Completed</a>
+</div>
+
+{% endblock bodyblock %}

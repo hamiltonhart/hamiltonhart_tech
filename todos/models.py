@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class TodoList(models.Model):
@@ -7,8 +8,8 @@ class TodoList(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
 
-    def incomplete_item(self):
-        return self.todo_items.filter(incomplete_item=True)
+    def incomplete_items(self):
+        return self.todo_items.filter(complete_item=False)
 
     def __str__(self):
         return self.name
@@ -19,10 +20,14 @@ class TodoList(models.Model):
 class TodoItem(models.Model):
     todo_list = models.ForeignKey(TodoList, related_name="todo_items" ,on_delete=models.CASCADE)
     item_name = models.CharField(max_length=500)
-    incomplete_item = models.BooleanField(default=True)
+    item_detail = models.TextField(blank=True, null=True)
+    assigned_date = models.DateTimeField(default=timezone.now())
+    complete_item = models.BooleanField(default=False)
+    complete_date = models.DateTimeField(blank=True, null=True)
 
     def mark_completed(self):
-        self.incomplete_item = False
+        self.complete_item = True
+        self.complete_date = timezone.now()
         self.save()
 
     def __str__(self):

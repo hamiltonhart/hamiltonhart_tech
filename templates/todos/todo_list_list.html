@@ -18,10 +18,10 @@
         <ul>
                 
             {% for item in list.todo_items.all %}
-                <li>{{ item }}</li>
+                {% if not item.complete_item %}
+                  <li>{{ item }}</li>  
+                {% endif %}                
             {% endfor %}
-                
-                
         </ul>
     {% endfor %}
   {% else %}

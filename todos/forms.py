@@ -11,4 +11,4 @@ class TodoForm(forms.ModelForm):
 class TodoItemForm(forms.ModelForm):
     class Meta:
         model = models.TodoItem
-        fields = ['todo_list', 'item_name']
+        fields = ['todo_list', 'item_name', 'item_detail']

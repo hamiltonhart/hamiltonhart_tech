@@ -37,9 +37,12 @@
                 <h4><a href="{% url 'todo_list_detail' todo.pk %}">{{ todo.name }}</a></h4>
                 
                 {% if todo.todo_items.all %}           
-                    <ul>
+                    <ul class="todo-list">
                     {% for item in todo.todo_items.all %}
-                        <li>{{ item.item_name }}</li>
+                        {% if  not item.complete_item %}
+                        <li><a href="{% url 'todo_item_complete_home' item.pk %}"><input type="checkbox" value="{{item.item_name}}"></a> - {{item.item_name}}</li>
+                        
+                        {% endif %}
                         
                     {% endfor %}
                     </ul>
