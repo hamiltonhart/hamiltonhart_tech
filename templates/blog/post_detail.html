@@ -15,6 +15,7 @@
     </div>
     
     <div>
+        <a class="btn btn-secondary" href="{% url 'post_list' %}">Back to Posts</a>
         <a class="btn btn-dark" href="{% url 'post_update' post_detail.pk %}">Update</a>
         <a class="btn btn-danger" href="{% url 'post_delete' post_detail.pk %}">Delete</a>
     </div>
