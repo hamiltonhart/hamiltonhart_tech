@@ -39,7 +39,7 @@
                 {% if todo.todo_items.all %}           
                     <ul class="todo-list">
                     {% for item in todo.todo_items.all %}
-                        {% if  not item.complete_item %}
+                        {% if  not item.complete %}
                         <li><a href="{% url 'todo_item_complete_home' item.pk %}"><input type="checkbox" value="{{item.item_name}}"></a> - {{item.item_name}}</li>
                         
                         {% endif %}

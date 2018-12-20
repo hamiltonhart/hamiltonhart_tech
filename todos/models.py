@@ -9,7 +9,10 @@ class TodoList(models.Model):
     description = models.TextField(blank=True, null=True)
 
     def incomplete_items(self):
-        return self.todo_items.filter(complete_item=False)
+        return self.todo_items.filter(complete=False)
+
+    def complete_items(self):
+        return self.todo_items.filter(complete=True)
 
     def __str__(self):
         return self.name
@@ -22,13 +25,20 @@ class TodoItem(models.Model):
     item_name = models.CharField(max_length=500)
     item_detail = models.TextField(blank=True, null=True)
     assigned_date = models.DateTimeField(default=timezone.now())
-    complete_item = models.BooleanField(default=False)
+    complete = models.BooleanField(default=False)
     complete_date = models.DateTimeField(blank=True, null=True)
+    edit_date = models.DateTimeField(blank=True, null=True)
 
     def mark_completed(self):
-        self.complete_item = True
+        self.complete = True
         self.complete_date = timezone.now()
         self.save()
+
+    def mark_not_completed(self):
+        self.complete = False
+        # self.complete_date = ''
+        self.save()
+        
 
     def __str__(self):
         return self.item_name

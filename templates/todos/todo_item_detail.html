@@ -16,7 +16,13 @@
 
 <div class="button-padding">
     <a class="btn btn-secondary" href="{% url 'todo_list_detail' todo_item.todo_list.pk %}">Back to List</a>
-    <a class="btn btn-success" href="{% url 'todo_item_complete_list' todo_item.pk %}">Completed</a>
+    
+    {% if todo_item.complete %}
+        <a class="btn btn-warning" href="{% url 'todo_item_not_complete' todo_item.pk %}">Not Completed</a>  
+    {% else %}
+        <a class="btn btn-success" href="{% url 'todo_item_complete_list' todo_item.pk %}">Completed</a>  
+    {% endif %}
+    
 </div>
 
 {% endblock bodyblock %}

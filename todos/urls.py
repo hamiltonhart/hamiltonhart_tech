@@ -32,5 +32,8 @@ urlpatterns = [
     path('items/<int:pk>/complete/list',
         views.todo_item_complete_list, 
         name='todo_item_complete_list'),
+    path('items/<int:pk>/not_complete', 
+        views.todo_item_not_complete, 
+        name='todo_item_not_complete')
     
 ]

@@ -71,3 +71,10 @@ def todo_item_complete_home(request, pk):
     
     return redirect('home')
     
+@login_required
+def todo_item_not_complete(request, pk):
+    todo_item = get_object_or_404(models.TodoItem, pk=pk)
+    todo_list_pk = todo_item.todo_list.pk
+    todo_item.mark_not_completed()
+    
+    return redirect('todo_list_detail', pk=todo_list_pk)

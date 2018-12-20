@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titleblock %}
     {{ todo_list.name }}
@@ -11,27 +12,73 @@
 {% block bodyblock %}
 <h1>{{ todo_list.name }}</h1>
 
-<div>
-
-    {% if todo_list.todo_items.all %}
-        <ul class="todo-list">
-        {% for item in todo_list.todo_items.all %}
-            {% if not item.complete_item %} 
-                
-                <li>
-                    <a href="{% url 'todo_item_complete_list' item.pk %}"><input type="checkbox"></a>
-                    <a href="{% url 'todo_item_detail' item.pk %}">{{ item.item_name }}</a>
-                </li>
-            {% endif %}
+<!-- Incomplete ToDo Items Listed -->
+<div id="incomplete-todos" class="container">
+    {% if todo_list.incomplete_items %}
+    <table>
+        <tr>
+            <th class="todo-table">Mark<br>Complete</th>
+        </tr>
+        {% for item in todo_list.incomplete_items %}                
+                <tr class="">
+                    <td class="todo-table">
+                        <a href="{% url 'todo_item_complete_list' item.pk %}"><input type="checkbox"></a>
+                    </td>  
+                    <td>
+                        <a href="{% url 'todo_item_detail' item.pk %}">{{ item.item_name }}</a>
+                    </td>
+                </tr>
         {% endfor %}
-        </ul>     
+        </table>
+    {% else %}
+        <h4>No Incomplete Items</h4>
     {% endif %}
 </div>
 
-<div>
+<!-- Show Completed -->
+<div id="" class="container button-padding">
+    <button id="show-hide-completed-todos" class="btn btn-outline-secondary btn-sm" onclick="showHideCompletedTodos(this)">Show Completed</button>
+</div>
+
+<!-- Complete ToDo Items Listed -->
+<div id="completed-todos" class="container" style="display:none;">
+    
+    {% if todo_list.complete_items %}
+    <table class="">
+        <tr>
+            <th class="todo-table">Mark<br>Incomplete</th>
+        </tr>
+        <!-- <ul class="todo-list"> -->
+            {% for item in todo_list.complete_items %}
+                    <!-- <li> -->
+                    <tr>
+                        <td class="todo-table">
+                            <a href="{% url 'todo_item_not_complete' item.pk %}">
+                                <input type="checkbox" class="btn btn-outline-warning"></input>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'todo_item_detail' item.pk %}">{{ item.item_name }}</a>
+                        </td>
+                    </tr>
+                    <!-- </li> -->
+            {% endfor %}
+        <!-- </ul> -->
+    </table>
+    {% else %}
+        <h4>No completed Items</h4>
+    {% endif %}
+        
+
+</div>
+
+<div class="button-padding">
     <a class="btn btn-dark" href="{% url 'todo_item_new' %}">Add ToDo Item</a>
     <a class="btn btn-dark" href="{% url 'todo_list_update' todo_list.pk %}">Update List</a>
     <a class="btn btn-danger" href="{% url 'todo_list_delete' todo_list.pk %}">Delete List</a>
 </div>
 {% endblock bodyblock %}
 
+{% block scriptblock %}
+  <script src="{% static 'js/master.js' %}"></script>
+{% endblock scriptblock %}
