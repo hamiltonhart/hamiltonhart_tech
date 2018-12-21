@@ -9,10 +9,10 @@ class TodoList(models.Model):
     description = models.TextField(blank=True, null=True)
 
     def incomplete_items(self):
-        return self.todo_items.filter(complete=False)
+        return self.todo_items.filter(complete=False).order_by("-assigned_date")
 
     def complete_items(self):
-        return self.todo_items.filter(complete=True)
+        return self.todo_items.filter(complete=True).order_by("-complete_date")
 
     def __str__(self):
         return self.name
@@ -36,7 +36,7 @@ class TodoItem(models.Model):
 
     def mark_not_completed(self):
         self.complete = False
-        # self.complete_date = ''
+        self.complete_date = None
         self.save()
         
 

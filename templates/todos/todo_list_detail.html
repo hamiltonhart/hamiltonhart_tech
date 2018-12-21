@@ -48,22 +48,22 @@
         <tr>
             <th class="todo-table">Mark<br>Incomplete</th>
         </tr>
-        <!-- <ul class="todo-list"> -->
             {% for item in todo_list.complete_items %}
-                    <!-- <li> -->
-                    <tr>
-                        <td class="todo-table">
-                            <a href="{% url 'todo_item_not_complete' item.pk %}">
-                                <input type="checkbox" class="btn btn-outline-warning"></input>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'todo_item_detail' item.pk %}">{{ item.item_name }}</a>
-                        </td>
-                    </tr>
-                    <!-- </li> -->
+                <tr>
+                    <td class="todo-table">
+                        <a href="{% url 'todo_item_not_complete' item.pk %}">
+                            <input type="checkbox" class="btn btn-outline-warning"></input>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'todo_item_detail' item.pk %}">{{ item.item_name }}</a>
+                    </td>
+                </tr>
+            <tr class="complete-date">
+                <td></td>
+                <td>{{ item.complete_date }}</td>
+            </tr>
             {% endfor %}
-        <!-- </ul> -->
     </table>
     {% else %}
         <h4>No completed Items</h4>
