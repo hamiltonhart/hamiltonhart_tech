@@ -17,7 +17,7 @@
         <h3><a href="{% url 'todo_list_detail' list.pk %}">{{ list.name }}</a></h3>
         <ul>
                 
-            {% for item in list.todo_items.all %}
+            {% for item in list.incomplete_items %}
                 {% if not item.complete_item %}
                   <li>{{ item }}</li>  
                 {% endif %}                
