@@ -1,41 +1,42 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+# from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils import timezone
 
 from . import models
 
 
-class PostListView(ListView):
-    model = models.Post
-    template_name = 'blog/post_list.html'
-    context_object_name = 'post_list'
+# class PostListView(ListView):
+#     model = models.Post
+#     template_name = 'blog/post_list.html'
+#     context_object_name = 'post_list'
 
-    def get_queryset(self):
-        return models.Post.objects.filter(date__lte=timezone.now()).order_by('-date')
-
-
-class PostDetailView(DetailView):
-    model = models.Post
-    template_name = 'blog/post_detail.html'
-    context_object_name = 'post_detail'
+#     def get_queryset(self):
+#         return models.Post.objects.filter(date__lte=timezone.now()).order_by('-date')
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = models.Post
-    template_name = 'blog/post_new.html'
-    fields = ['title', 'author', 'body_text']
+# class PostDetailView(DetailView):
+#     model = models.Post
+#     template_name = 'blog/post_detail.html'
+#     context_object_name = 'post_detail'
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
-    model = models.Post
-    template_name = 'blog/post_update.html'
-    fields = ['title', 'author', 'body_text']
+# class PostCreateView(LoginRequiredMixin, CreateView):
+#     model = models.Post
+#     template_name = 'blog/post_new.html'
+#     fields = ['title', 'author', 'body_text']
 
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
-    model = models.Post
-    template_name = 'blog/post_delete.html'
-    success_url = reverse_lazy('post_list')
-    context_object_name = 'post'
+# class PostUpdateView(LoginRequiredMixin, UpdateView):
+#     model = models.Post
+#     template_name = 'blog/post_update.html'
+#     fields = ['title', 'author', 'body_text']
+
+
+# class PostDeleteView(LoginRequiredMixin, DeleteView):
+#     model = models.Post
+#     template_name = 'blog/post_delete.html'
+#     success_url = reverse_lazy('post_list')
+#     context_object_name = 'post'
+
